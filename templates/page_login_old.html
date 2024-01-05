@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+
+<link rel="stylesheet" href="static/css_js/page_login.css">
+
+ <head>
+
+  <meta charset="UTF-8">
+
+  <title>Registration Form</title>
+
+
+ </head>
+
+ <body> <!-- partial:index.partial.html -->
+
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+
+   <div class="signin">
+
+    <div class="content">
+
+     <h2>Sign In</h2>
+
+     <div class="form">
+
+      <div class="inputBox">
+
+       <input type="text" id ="username" required> <i>Username</i>
+
+      </div>
+
+      <div class="inputBox">
+
+       <input type="text" id ="password" required> <i>Password</i>
+
+      </div>
+
+      <div class="links"> <a href="#" onclick="forgotPSW()">Forgot Password</a> <a href="#" onclick="pageRegistration()">Signup</a>
+
+      </div>
+
+      <script
+          src = "static/css_js/page_login.js">
+      </script>
+
+      <div class="inputBox">
+
+       <input type="submit" id ="login" value="Login" onclick="UserAction()">
+
+      </div>
+
+     </div>
+
+    </div>
+
+   </div>
+
+  </section> <!-- partial -->
+
+ </body>
+
+</html>
+
+
+
+
+
+
+
+
+<!const headers = xhttp.getAllResponseHeaders();
+                    const arr = headers.trim().split(/[\r\n]+/);
+                    const headerMap = {};
+                    arr.forEach((line) => {
+                      const parts = line.split(": ");
+                      const header = parts.shift();
+                      const value = parts.join(": ");
+                      headerMap[header] = value;
+                    });
+                    token = headerMap["access-token"];>
