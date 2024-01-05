@@ -1,1 +1,2 @@
-![image](https://github.com/danilove123/Automated_warehouse/assets/68416072/3781027d-de59-4ed0-91f4-59c1a66ae1d8)
+![Снимок экрана (125)](https://github.com/danilove123/Automated_warehouse/assets/68416072/9e2149cf-8a83-474c-9e5a-c73aa5c04191)
+
