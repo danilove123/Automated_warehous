@@ -6,7 +6,9 @@ import sim as sm
 import numpy as np
 import cv2
 
-requests.delete(f'http://127.0.0.1:8000/warehouse/drop_tables')
+requests.delete('http://127.0.0.1:8000/warehouse/drop_tables')
+requests.post('http://127.0.0.1:8000/warehouse/add_pallets')
+
 
 stroke = ""
 stroke_old = ""
@@ -18,8 +20,9 @@ error, camera = sm.simxGetObjectHandle(clientID, "VS", sm.simx_opmode_oneshot_wa
 error, resolution, image = sm.simxGetVisionSensorImage(clientID, camera, 0, sm.simx_opmode_streaming)
 sim = client.getObject('sim')
 sm.simxStartSimulation(clientID, sm.simx_opmode_oneshot)
+o = 0
 i = 0
-lst = [[1, 0], [0, 1]]
+lst = [[2, 4], [0, 1]]
 bck = 0
 while (True):
 
@@ -59,8 +62,10 @@ while (True):
                 if stroke_old != stroke:
 
                     r = requests.post(f'http://127.0.0.1:8000/warehouse/add_pallet?unparsed={data}')
-                    print(r.text)
+                    txt = r.text
+                    lst[o] = [int(r.text[1]),int(r.text[2])]
                     stroke_old = stroke
+                    o = o + 1
 
 
             cv2.waitKey(3)

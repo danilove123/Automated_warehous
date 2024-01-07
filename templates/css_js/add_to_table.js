@@ -86,6 +86,7 @@ xhttp.onreadystatechange = function() {
       if(xhttp.status == 200){
           //var s2 = xhttp.responseText.substring(1);
           var s3 = xhttp.responseText.slice(3,-3);
+
           const array = s3.split('), (');
 
           for (const element of array){

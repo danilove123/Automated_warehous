@@ -73,7 +73,7 @@ async def add_pallet(unparsed: str):
     Base.metadata.create_all(bind=engine, tables=[tabl_2])
     array_parsed = StringEditor.unparsing_str(unparsed)
     id_pallet = str(uuid.uuid4())
-
+    result = await check_cell("10")
     list_products = []
     async with async_sessionmaker() as session:
         for i in range(2, len(array_parsed), 1):
@@ -81,28 +81,76 @@ async def add_pallet(unparsed: str):
                                  id_pallet=id_pallet)
             list_products.append(new_product)
 
+        list_products.append(Shelf(id_cell=result, id_pallet=id_pallet, id_producer=array_parsed[0],added_at=datetime.utcnow()))
         session.add_all(list_products)
         await session.commit()
 
-    return "Всё что было в поставке добавлено в бд"
+    return result
 
 
 @app_warehouse.delete("/drop_tables")
 async def drop_tb():
-    tabl_1 = Base.metadata.tables.get("Producers")
-    tabl_2 = Base.metadata.tables.get("Staff")
-    tabl_3 = Base.metadata.tables.get("Pallet")
     tabl_4 = Base.metadata.tables.get("Shelf")
-    Base.metadata.drop_all(bind=engine, tables=[tabl_1, tabl_2, tabl_3, tabl_4])
+    Base.metadata.drop_all(bind=engine, tables=[tabl_4])
 
 
 @app_warehouse.post("/create_tables")
 async def create_tb():
-    tabl_1 = Base.metadata.tables.get("Producers")
+    tabl_0 = Base.metadata.tables.get("Producers")
     tabl_2 = Base.metadata.tables.get("Staff")
-    tabl_3 = Base.metadata.tables.get("Pallet")
-    tabl_4 = Base.metadata.tables.get("Shelf")
-    Base.metadata.create_all(bind=engine, tables=[tabl_1, tabl_2,tabl_3,tabl_4])
+
+    lst_staff = []
+    lst_producers = []
+    try:
+        with sync_sessionmaker() as session:
+            lst_staff.append(Staff(id_staff='12345', name='Naruto Udzumaki', specification='Garden'))
+            lst_staff.append(Staff(id_staff='12340', name='Gojo Satoru', specification='Wood'))
+            lst_staff.append(Staff(id_staff='12341', name='Todo Urakadaki', specification='Wood'))
+            lst_staff.append(Staff(id_staff='12342', name='Tanjiro Kamado', specification='Wood'))
+            lst_staff.append(Staff(id_staff='12343', name='Gats Berserkovskyi', specification='Hardware products'))
+            lst_staff.append(Staff(id_staff='12344', name='Sukuna Remen', specification='Сement'))
+            lst_staff.append(Staff(id_staff='12346', name='Padme Amidala', specification='Hardware products'))
+            lst_staff.append(Staff(id_staff='12347', name='Kopatych Smecharikovskiy', specification='Hardware products'))
+            lst_staff.append(Staff(id_staff='12348', name='Genadiy bukin', specification='Open soft'))
+            lst_staff.append(Staff(id_staff='12349', name='Gosha Kucenko', specification='Open soft'))
+
+            lst_producers.append(Producers(id_producer='0000', name='Lerua', city='Vladivostok'))
+            lst_producers.append(Producers(id_producer='0001', name='Freken Bok', city='Vladivostok'))
+            lst_producers.append(Producers(id_producer='0002', name='Stroi DV', city='Vladivostok'))
+            lst_producers.append(Producers(id_producer='0003', name='Zastroyshik', city='Artem'))
+            lst_producers.append(Producers(id_producer='0004', name='Drom', city='Vladivostok'))
+            lst_producers.append(Producers(id_producer='0005', name='Texnodrom', city='Khabarovsk'))
+            lst_producers.append(Producers(id_producer='0006', name='Lerua_A', city='Vladivostok'))
+            lst_producers.append(Producers(id_producer='0007', name='IKEA', city='Moscow'))
+            lst_producers.append(Producers(id_producer='0008', name='IKEA_0', city='Vladivostok'))
+
+            session.add_all(lst_staff)
+            session.add_all(lst_producers)
+            session.commit()
+
+    except Exception:
+        print("Cant add new shelf")
+
+@app_warehouse.post("/add_pallets")
+async def add_pallets():
+    tabl = Base.metadata.tables.get("Shelf")
+    Base.metadata.create_all(bind=engine, tables=[tabl])
+
+    try:
+        with sync_sessionmaker() as session:
+            pallet_0 = Shelf(id_cell='00', id_pallet='12234544', id_producer='123322112M')
+            pallet_1 = Shelf(id_cell='01', id_pallet='12234543', id_producer='123322112M')
+            pallet_2 = Shelf(id_cell='10', id_pallet='12234542', id_producer='123322112M')
+            pallet_3 = Shelf(id_cell='11', id_pallet='12234540', id_producer='123322112K')
+            pallet_4 = Shelf(id_cell='20', id_pallet='12234549', id_producer='123322112L')
+            pallet_5 = Shelf(id_cell='02', id_pallet='12234546', id_producer='123322112R')
+            pallet_6 = Shelf(id_cell='60', id_pallet='12234545', id_producer='23322112T')
+
+            session.add_all([pallet_0,pallet_1,pallet_2,pallet_3,pallet_4,pallet_5,pallet_6])
+            session.commit()
+
+    except Exception:
+        print("Cant add new shelf")
 
 
 @app_warehouse.get("/get_shelfs")

@@ -38,6 +38,7 @@ class Producers(Base):
     __tablename__ = "Producers"
     id_producer:Mapped[strpk]
     name:Mapped[strk]
+    city:Mapped[strk]
 
 class Staff(Base):
     __tablename__ = "Staff"
