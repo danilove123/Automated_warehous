@@ -1,0 +1,44 @@
+
+sudo -i - переход в корень root
+systemctl - для управления службами | systemctl list-units  - список всех служб
+grep - для поиска по строке | grep root /etc/passwd ищем root в /etc/passwd
+/etc/passwd (файл где хранится информация о пользователях)
+pwd - рабочая директория
+ls -l - список с видимыми файлами
+ls -la - список со всеми файлами
+cd .. - подняться на уровень выше
+mkdir test - создать директорию
+touch/cat/nano - создать файл
+cp app.log /home/olga - копирование
+cp -r app.log /home/olga - копирование для директорий
+mv app.log /home/olga - переместить файл
+rm text.txt - удаление файла
+rm * - удаление всего
+rm -r /olga - удаление папки
+rm -rf /olga - удаление папки без подтверждения y/N
+
+chown user:group text.txt - смена группы и владельца для файла
+chown -R user:group text.txt - смена группы и владельца для папки
+chmod 766 text.txt - смена прав доступа (-rwxrw-rw-)
+
+adduser user - добавление пользователя (кидается через sudo)
+passwd user - добавление пароля пользователя
+userdel параметры user - удаление пользователя (кидается через sudo)
+passwd --lock user - блокировка пользователя
+groupadd group1 - добавление группы (кидается через sudo)
+usermod group7 user - добавление пользователя в группу
+
+sh script.sh - старт скрипта (начинается с #!/bin/bash)
+whereis newman - узнать путь приложения
+
+
+
+
+
+
+
+
+
+
+
+
