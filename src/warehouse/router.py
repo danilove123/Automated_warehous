@@ -93,7 +93,6 @@ async def drop_tb():
     tabl_4 = Base.metadata.tables.get("Shelf")
     Base.metadata.drop_all(bind=engine, tables=[tabl_4])
 
-
 @app_warehouse.post("/create_tables")
 async def create_tb():
     tabl_0 = Base.metadata.tables.get("Producers")
@@ -152,7 +151,6 @@ async def add_pallets():
     except Exception:
         print("Cant add new shelf")
 
-
 @app_warehouse.get("/get_shelfs")
 async def get_all(response: Response):
     try:
@@ -207,10 +205,6 @@ async def get_all(response: Response):
     except Exception:
         raise CustomException(500, "Error with request to DB")
 
-
-
-
-
 @app_warehouse.get("/get_staff")
 async def get_all(response: Response):
     try:
@@ -236,9 +230,6 @@ async def get_all(response: Response):
 
     except Exception:
         raise CustomException(500, "Error with request to DB")
-
-
-
 
 @app_warehouse.get("/get_html/static/{name}/{name1}")
 async def get_styles_css(request: Request):

@@ -63,6 +63,7 @@ while (True):
 
                     r = requests.post(f'http://127.0.0.1:8000/warehouse/add_pallet?unparsed={data}')
                     txt = r.text
+                    print(data)
                     lst[o] = [int(r.text[1]),int(r.text[2])]
                     stroke_old = stroke
                     o = o + 1
