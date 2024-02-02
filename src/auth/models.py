@@ -7,17 +7,19 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 metadata = MetaData()
 
-strpk = Annotated[str,mapped_column(primary_key=True,nullable=False)]
-intpk = Annotated[int,mapped_column(primary_key=True,nullable=False)]
-strk = Annotated[str,mapped_column(primary_key=False,nullable=False)]
-intk = Annotated[str,mapped_column(primary_key=False,nullable=False)]
+strpk = Annotated[str, mapped_column(primary_key=True, nullable=False)]
+intpk = Annotated[int, mapped_column(primary_key=True, nullable=False)]
+strk = Annotated[str, mapped_column(primary_key=False, nullable=False)]
+intk = Annotated[str, mapped_column(primary_key=False, nullable=False)]
 
-timeutc = Annotated[datetime.datetime,mapped_column(
-    server_default=text("TIMEZONE('utc',now())"),onupdate=datetime.datetime.utcnow
+timeutc = Annotated[datetime.datetime, mapped_column(
+    server_default=text("TIMEZONE('utc',now())"), onupdate=datetime.datetime.utcnow
 )]
+
 
 class Base(DeclarativeBase):
     pass
+
 
 class Users(Base):
     __tablename__ = "Users"

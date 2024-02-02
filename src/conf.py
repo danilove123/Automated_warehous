@@ -3,7 +3,7 @@ from secrets import token_urlsafe
 from dotenv import load_dotenv
 import os
 
-load_dotenv("config.env")
+load_dotenv("configuration.env")
 
 DB_HOST=os.environ.get("DB_HOST")
 DB_PORT=os.environ.get("DB_PORT")

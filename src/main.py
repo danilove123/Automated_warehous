@@ -6,6 +6,7 @@ from src.auth.router import app_auth
 from src.service import templates
 from fastapi import FastAPI, HTTPException, Depends, Response, APIRouter
 from redis import asyncio as aioredis
+import uvicorn
 
 
 from src.warehouse.router import app_warehouse
@@ -13,6 +14,9 @@ from src.warehouse.router import app_warehouse
 app = FastAPI()
 app.mount("/auth", app_auth)
 app.mount("/warehouse", app_warehouse)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, log_level="info",reload=True)
 
 # @app.on_event("startup")
 # async def startup_database():
