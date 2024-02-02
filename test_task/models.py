@@ -5,27 +5,20 @@ from sqlalchemy.ext.declarative import declarative_base
 Base_1 = declarative_base()
 
 
-class Author(Base_1):
-    __tablename__ = 'author'
-
-    id = Column(Integer, primary_key=True)
-    login = Column(String)
-    email = Column(String)
-
-
 class User(Base_1):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
-    login = Column(String)
-    email = Column(String)
+    login = Column(String, unique=True)
+    email = Column(String, unique=True)
+    author_id = Column(Integer, nullable=True, unique=True)
 
 
 class Blog(Base_1):
     __tablename__ = 'blog'
 
     id = Column(Integer, primary_key=True)
-    owner_id = Column(Integer, ForeignKey('author.id'))
+    author_id = Column(Integer, ForeignKey('user.author_id'),nullable=False)
     name = Column(String)
     description = Column(String)
 
@@ -36,10 +29,10 @@ class Post(Base_1):
     id = Column(Integer, primary_key=True)
     header = Column(String)
     text = Column(String)
-    author_id = Column(Integer, ForeignKey('author.id'))
-    blog_id = Column(Integer, ForeignKey('blog.id'))
+    author_id = Column(Integer, ForeignKey('user.author_id'),nullable=False)
+    blog_id = Column(Integer, ForeignKey('blog.id'),nullable=False)
 
-    author = relationship("Author")
+    author = relationship("User")
     blog = relationship("Blog")
 
 
