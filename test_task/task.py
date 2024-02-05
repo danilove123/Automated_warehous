@@ -5,11 +5,11 @@ from sqlalchemy import func, and_, or_, case
 from test_task.databases import sync_sessionmaker_1, sync_sessionmaker_2
 from test_task.models import User, Post, Logs, EventType, SpaceType
 
-# parser = argparse.ArgumentParser(description='Получение статистики')
-# parser.add_argument('--login', type=str, help='Логин пользователя')
-# args = parser.parse_args()
-#
-# user_login = args.login
+parser = argparse.ArgumentParser(description='Получение статистики')
+parser.add_argument('--login', type=str, help='Логин пользователя')
+args = parser.parse_args()
+
+user_login = args.login
 
 user_login = "daniil228339"
 
@@ -51,12 +51,13 @@ def generate_statistics_comments():
 
 
 def generate_statistics_events():
+
     with sync_sessionmaker_1() as session_1:
         user = session_1.query(User).filter(User.login == user_login).first()
 
         with sync_sessionmaker_2() as session_2:
 
-            date_list = session_2.query(Logs.datetime).filter(Logs.user_id == 1).order_by(Logs.datetime.asc()).all()
+            date_list = session_2.query(Logs.datetime).filter(Logs.user_id == 1).order_by(Logs.datetime.desc()).all()
 
             logs = session_2.query(Logs.datetime, func.count(Logs.id)). \
                 join(EventType). \
@@ -78,6 +79,8 @@ def generate_statistics_events():
                 filter(SpaceType.name == "blog", Logs.user_id == 1). \
                 group_by(Logs.datetime). \
                 all()
+
+            print(date_list)
 
 
 
